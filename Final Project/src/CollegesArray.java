@@ -43,7 +43,7 @@ public class CollegesArray  extends JFrame
 		public static void fillArray()
 			{
 				education.add(new Colleges("Colorado College", "Colorado Springs, Colorado", "Early Action: December 20", "the block schedule", 68616, 2101, -1));
-				education.add(new Colleges("Georgetown University", "Georgetown Neighborhood, Washignton D.C.", "Early Action: December 15", "politician heaven", 66971, 7453, -1));
+				education.add(new Colleges("Georgetown University", "Georgetown Neighborhood, Washignton D.C.", "Early Action: December 15", "political heaven", 66971, 7453, -1));
 				education.add(new Colleges("Claremont McKenna College", "Claremont, California", "Regular Decision: April 1", "the athenaeum", 69045, 1349, -1));
 				education.add(new Colleges("Pomona College", "Claremont, California", "Regular Descision: April 1", "the consortium", 64870, 1660, -1));
 				education.add(new Colleges("University of Colorado Boulder", "Boulder, Colorado", "Regular Descision: April 1", "sko buffs", 27884, 33246, -1));
@@ -52,7 +52,7 @@ public class CollegesArray  extends JFrame
 			{
 				for (int i=0; i< education.size(); i++)
     					{
-    						System.out.println(education.get(i).getName());
+    						JOptionPane.showMessageDialog(frame,education.get(i).getName());
    						}
    					Object[] options = {"yes", "no"};
     				college = JOptionPane.showOptionDialog(frame, "Would you like to add a college to this list?",
@@ -268,9 +268,7 @@ public class CollegesArray  extends JFrame
 			
 							}
 						}
-				}
-			
-						
+				}		
 		}
 	}	
 
