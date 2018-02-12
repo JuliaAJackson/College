@@ -103,7 +103,7 @@ public class CollegesArray  extends JFrame
     							JOptionPane.QUESTION_MESSAGE,
     							null, options, options[1]);
     					Object[] options1 = {"yes", "no"};
-    					financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from this school (do not include a dollar sign)?",
+    					financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from this school?",
     							"Financial",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
@@ -113,7 +113,7 @@ public class CollegesArray  extends JFrame
     						case 0:
     							{
 							
-    								stringDeduction = JOptionPane.showInputDialog("How much money did they offer (do not incluse a dollar sign)");  
+    								stringDeduction = JOptionPane.showInputDialog("How much money did they offer (do not include a dollar sign)");  
     								deduction = Integer.parseInt(stringDeduction);
     								education.get(choice).setTuition(education.get(choice).getTuition()-deduction);
     								JOptionPane.showMessageDialog(frame, "Tuition for " + education.get(choice).getName() + " would now be $" + education.get(choice).getTuition());
@@ -257,7 +257,7 @@ public class CollegesArray  extends JFrame
 								case 0:
 										{
 											int randomCollege = (int) (Math.random() * education.size());
-											JOptionPane.showMessageDialog(frame, education.get(randomCollege).getName() + " is awesome! Enjoy paying $" + education.get(randomCollege).getTuition() + " for " + education.get(randomCollege).getBestKnownFor() + " in " + education.get(randomCollege).getLocation() + " with " +  education.get(randomCollege).getStudentBodySize() + " of your closest friends!" );
+											JOptionPane.showMessageDialog(frame, education.get(randomCollege).getName() + " is in your future according to this computer! Enjoy paying $" + education.get(randomCollege).getTuition() + " for " + education.get(randomCollege).getBestKnownFor() + " in " + education.get(randomCollege).getLocation() + " with " +  education.get(randomCollege).getStudentBodySize() + " of your closest friends!" );
 											break;
 										}
 								case 1: 
