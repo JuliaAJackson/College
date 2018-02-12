@@ -22,6 +22,9 @@ public class CollegesArray  extends JFrame
 		static int college;
 		static int choice;
 		static int financial;
+		static int decision;
+		static int happy;
+		static int computer;
 		static JFrame frame = new JFrame();
 		static ArrayList <Colleges> education = new ArrayList <Colleges>();
 		public static void main(String[] args)
@@ -34,6 +37,8 @@ public class CollegesArray  extends JFrame
 				sortSize();
 				sortFeeling();
 				sortTuition();
+				makeAChoice();
+				randomChoice();
 			}
 		public static void fillArray()
 			{
@@ -46,79 +51,102 @@ public class CollegesArray  extends JFrame
 		public static void addCollege()
 			{
 				for (int i=0; i< education.size(); i++)
-					{
-						System.out.println(education.get(i).getName());
-					}
-				Object[] options = {"yes", "no"};
-				college = JOptionPane.showOptionDialog(frame, "Would you like to add a college to this list?",
-						"College",
-						JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null, options, options[1]);
-				switch(college)
-				{
-					case 0:
-						{
-							JOptionPane.showMessageDialog(frame,"Okay you'll need some specifics about the school... get Google (or your intricate knowlege of the college process) ready");
-							name = JOptionPane.showInputDialog("What is the name of the school");  
-							location = JOptionPane.showInputDialog("Where is the school located");  
-							decisionDate = JOptionPane.showInputDialog("When does the school put out acceptances?");  
-							bestKnownFor = JOptionPane.showInputDialog("What is the school best known for?");  
-							stringTuition = JOptionPane.showInputDialog("What is the tuition of the school?");  
-							stringStudentBodySize = JOptionPane.showInputDialog("What is the school's student body size?");  
-							feeling = -1;
-							tuition = Integer.parseInt(stringTuition);
-							studentBodySize = Integer.parseInt(stringStudentBodySize);
-							education.add(new Colleges(name, location, decisionDate, bestKnownFor, tuition, studentBodySize, feeling));
-							System.out.println("You have added " +  education.get(education.size()-1).getName() + "to the list");
-							System.out.println(education.get(education.size()-1).getTuition());
-							break;
-						}
-							
-					case 1:
-						{
-							JOptionPane.showMessageDialog(frame, "Okay! Glad you've narrowed your choices down!");
-							break;
-						}
-				}
-			}
+    					{
+    						System.out.println(education.get(i).getName());
+   						}
+   					Object[] options = {"yes", "no"};
+    				college = JOptionPane.showOptionDialog(frame, "Would you like to add a college to this list?",
+    						"College",
+   							JOptionPane.YES_NO_CANCEL_OPTION,
+   							JOptionPane.QUESTION_MESSAGE,
+   							null, options, options[1]);  
+    				switch(college)
+    					{
+    					case 0:
+    						{
+    							JOptionPane.showMessageDialog(frame,"Okay you'll need some specifics about the school... get Google (or your intricate knowlege of the college process) ready");
+   								name = JOptionPane.showInputDialog("What is the name of the school");  
+   								location = JOptionPane.showInputDialog("Where is the school located");  
+   								decisionDate = JOptionPane.showInputDialog("When does the school put out acceptances?");  
+   								bestKnownFor = JOptionPane.showInputDialog("What is the school best known for?");  
+   								stringTuition = JOptionPane.showInputDialog("What is the tuition of the school?");  
+    							stringStudentBodySize = JOptionPane.showInputDialog("What is the school's student body size?");  
+    							feeling = -1;
+    							tuition = Integer.parseInt(stringTuition);
+    							studentBodySize = Integer.parseInt(stringStudentBodySize);
+    							education.add(new Colleges(name, location, decisionDate, bestKnownFor, tuition, studentBodySize, feeling));
+    							System.out.println("You have added " +  education.get(education.size()-1).getName() + "to the list");
+    							System.out.println(education.get(education.size()-1).getTuition());
+   								break;
+   							}		
+   						case 1:
+   							{
+   								JOptionPane.showMessageDialog(frame, "Okay! Glad you've narrowed your choices down!");
+    							break;
+    						}
+    					}
+    				}
+		
 		public static void subtractFinancialAid()
 			{
-				
-				Object[] options = new Object [education.size()];
-				for (int i=0; i< education.size(); i++)
-					{
-						options[i]=education.get(i).getName();
-					}
-					
-				choice = JOptionPane.showOptionDialog(frame, "Choose a College?",
-						"Choice",
-						JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null, options, options[1]);
-				Object[] options1 = {"yes", "no"};
-				financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from this school (do not include a dollar sign)?",
-						"Financial",
-						JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null, options1, options1[1]);
-				switch(financial)
-				{
-					case 0:
-						{
+				boolean subtracting = true; 
+				while (subtracting)
+    				{
+    					Object[] options = new Object [education.size()];
+    					for (int i=0; i< education.size(); i++)
+    						{
+    							options[i]=education.get(i).getName();
+    						}	
+    					choice = JOptionPane.showOptionDialog(frame, "Let's figure out the financials! Chose a college.",
+    							"Choice",
+    							JOptionPane.YES_NO_CANCEL_OPTION,
+    							JOptionPane.QUESTION_MESSAGE,
+    							null, options, options[1]);
+    					Object[] options1 = {"yes", "no"};
+    					financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from this school (do not include a dollar sign)?",
+    							"Financial",
+    							JOptionPane.YES_NO_CANCEL_OPTION,
+    							JOptionPane.QUESTION_MESSAGE,
+    							null, options1, options1[1]);
+    					switch(financial)
+    						{
+    						case 0:
+    							{
 							
-							stringDeduction = JOptionPane.showInputDialog("How much money did they offer (do not incluse a dollar sign)");  
-							deduction = Integer.parseInt(stringDeduction);
-							education.get(choice).setTuition(education.get(choice).getTuition()-deduction);
-							JOptionPane.showMessageDialog(frame, "Tuition for " + education.get(choice).getName() + " would now be $" + education.get(choice).getTuition());
-							break;
-						}
-					case 1:
+    								stringDeduction = JOptionPane.showInputDialog("How much money did they offer (do not incluse a dollar sign)");  
+    								deduction = Integer.parseInt(stringDeduction);
+    								education.get(choice).setTuition(education.get(choice).getTuition()-deduction);
+    								JOptionPane.showMessageDialog(frame, "Tuition for " + education.get(choice).getName() + " would now be $" + education.get(choice).getTuition());
+    								break;
+    							}
+    						case 1:
+    							{
+    								JOptionPane.showMessageDialog(frame, "Too bad! Enjoy being poor!");
+    								break;
+    							}
+    						}
+    					Object[] options2 = {"yes", "no"};
+    					financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from other schools??",
+    							"Financial",
+    							JOptionPane.YES_NO_CANCEL_OPTION,
+    							JOptionPane.QUESTION_MESSAGE,
+    							null, options2, options2[1]);
+    					switch(financial)
 							{
-								JOptionPane.showMessageDialog(frame, "Too bad! Enjoy being poor!");
-								break;
+							case 0:
+								{
+									JOptionPane.showMessageDialog(frame,"good!"); 
+									break;
+								}
+							case 1: 
+								{
+									JOptionPane.showMessageDialog(frame,"I see debt in your future!"); 
+									subtracting = false;
+									break;
+								}
 							}
-				}
+								
+    				}
 			}
 		public static void recordFeelings()
 			{
@@ -186,8 +214,66 @@ public class CollegesArray  extends JFrame
 						}
 				}
 			}
+		public static void makeAChoice()
+			{
+				Object[] options = new Object [education.size()];
+				for (int i=0; i< education.size(); i++)
+					{
+						options[i]=education.get(i).getName();
+					}
+					
+				decision = JOptionPane.showOptionDialog(frame, "What is your final college choice?",
+						"Descision",
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null, options, options[1]);
+				JOptionPane.showMessageDialog(frame, education.get(decision).getName() + " is awesome! Enjoy paying $" + education.get(decision).getTuition() + " for " + education.get(decision).getBestKnownFor() + " in " + education.get(decision).getLocation() + " with " +  education.get(decision).getStudentBodySize() + " of your closest friends!" );
+			}
+	public static void randomChoice()
+		{
+			Object[] options1 = {"yes", "no"};
+			happy = JOptionPane.showOptionDialog(frame, "Are you happy with your college choice?",
+					"Happy",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null, options1, options1[1]);
+			switch(happy)
+			{
+				case 0:
+						{
+							JOptionPane.showMessageDialog(frame, "Good! Glad to help!");
+							break;
+						}
+				case 1:
+						{
+							Object[] options2 = {"yes", "no"};
+							computer = JOptionPane.showOptionDialog(frame, "Aw! Would you like the computer to chose for you?",
+									"Computer",
+									JOptionPane.YES_NO_CANCEL_OPTION,
+									JOptionPane.QUESTION_MESSAGE,
+									null, options2, options2[1]);
+							switch(computer)
+							{
+								case 0:
+										{
+											int randomCollege = (int) (Math.random() * education.size());
+											JOptionPane.showMessageDialog(frame, education.get(randomCollege).getName() + " is awesome! Enjoy paying $" + education.get(randomCollege).getTuition() + " for " + education.get(randomCollege).getBestKnownFor() + " in " + education.get(randomCollege).getLocation() + " with " +  education.get(randomCollege).getStudentBodySize() + " of your closest friends!" );
+											break;
+										}
+								case 1: 
+									{
+										JOptionPane.showMessageDialog(frame, "Well, you better go do some soul searching");
+										break;
+									}
+			
+							}
+						}
+				}
+			
+						
 		}
-	
+	}	
+
 
 
 
