@@ -19,12 +19,10 @@ public class CollegesArray  extends JFrame
 		static int tuition;
 		static int studentBodySize;
 		static int feeling; 
-		static int college;
-		static int choice;
-		static int financial;
-		static int decision;
-		static int happy;
-		static int computer;
+		static String pro;
+		static String con;
+		static String prosList;
+		static String consList;
 		static JFrame frame = new JFrame();
 		static ArrayList <Colleges> education = new ArrayList <Colleges>();
 		public static void main(String[] args)
@@ -33,20 +31,23 @@ public class CollegesArray  extends JFrame
 				addCollege();
 				subtractFinancialAid();
 				recordFeelings();
+				makeProsCons();
 				decideHowToSort();
 				sortSize();
 				sortFeeling();
 				sortTuition();
+				educateChoice();
+				
 				makeAChoice();
 				randomChoice();
 			}
 		public static void fillArray()
 			{
-				education.add(new Colleges("Colorado College", "Colorado Springs, Colorado", "Early Action: December 20", "the block schedule", 68616, 2101, -1));
-				education.add(new Colleges("Georgetown University", "Georgetown Neighborhood, Washignton D.C.", "Early Action: December 15", "political heaven", 66971, 7453, -1));
-				education.add(new Colleges("Claremont McKenna College", "Claremont, California", "Regular Decision: April 1", "the athenaeum", 69045, 1349, -1));
-				education.add(new Colleges("Pomona College", "Claremont, California", "Regular Descision: April 1", "the consortium", 64870, 1660, -1));
-				education.add(new Colleges("University of Colorado Boulder", "Boulder, Colorado", "Regular Descision: April 1", "sko buffs", 27884, 33246, -1));
+				education.add(new Colleges("Colorado College", "Colorado Springs, Colorado", "Early Action: December 20", "the block schedule", 68616, 2101, -1, "", " "));
+				education.add(new Colleges("Georgetown University", "Georgetown Neighborhood, Washignton D.C.", "Early Action: December 15", "political heaven", 66971, 7453, -1, "", " "));
+				education.add(new Colleges("Claremont McKenna College", "Claremont, California", "Regular Decision: April 1", "the athenaeum", 69045, 1349, -1, "", " "));
+				education.add(new Colleges("Pomona College", "Claremont, California", "Regular Descision: April 1", "the consortium", 64870, 1660, -1, "", " "));
+				education.add(new Colleges("University of Colorado Boulder", "Boulder, Colorado", "Regular Descision: April 1", "sko buffs", 27884, 33246, -1, "", " "));
 			}
 		public static void addCollege()
 			{
@@ -55,7 +56,7 @@ public class CollegesArray  extends JFrame
     						JOptionPane.showMessageDialog(frame,education.get(i).getName());
    						}
    					Object[] options = {"yes", "no"};
-    				college = JOptionPane.showOptionDialog(frame, "Would you like to add a college to this list?",
+    				int college = JOptionPane.showOptionDialog(frame, "Would you like to add a college to this list?",
     						"College",
    							JOptionPane.YES_NO_CANCEL_OPTION,
    							JOptionPane.QUESTION_MESSAGE,
@@ -72,9 +73,11 @@ public class CollegesArray  extends JFrame
    								stringTuition = JOptionPane.showInputDialog("What is the tuition of the school?");  
     							stringStudentBodySize = JOptionPane.showInputDialog("What is the school's student body size?");  
     							feeling = -1;
+    							pro = " ";
+    							con = " ";
     							tuition = Integer.parseInt(stringTuition);
     							studentBodySize = Integer.parseInt(stringStudentBodySize);
-    							education.add(new Colleges(name, location, decisionDate, bestKnownFor, tuition, studentBodySize, feeling));
+    							education.add(new Colleges(name, location, decisionDate, bestKnownFor, tuition, studentBodySize, feeling, pro, con));
     							System.out.println("You have added " +  education.get(education.size()-1).getName() + "to the list");
     							System.out.println(education.get(education.size()-1).getTuition());
    								break;
@@ -97,13 +100,13 @@ public class CollegesArray  extends JFrame
     						{
     							options[i]=education.get(i).getName();
     						}	
-    					choice = JOptionPane.showOptionDialog(frame, "Let's figure out the financials! Chose a college.",
+    					int choice = JOptionPane.showOptionDialog(frame, "Let's figure out the financials! Chose a college.",
     							"Choice",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
     							null, options, options[1]);
     					Object[] options1 = {"yes", "no"};
-    					financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from this school?",
+    					int financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from this school?",
     							"Financial",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
@@ -126,12 +129,12 @@ public class CollegesArray  extends JFrame
     							}
     						}
     					Object[] options2 = {"yes", "no"};
-    					financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from other schools??",
+    					int financial2 = JOptionPane.showOptionDialog(frame, "Did you receive any money from other schools??",
     							"Financial",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
     							null, options2, options2[1]);
-    					switch(financial)
+    					switch(financial2)
 							{
 							case 0:
 								{
@@ -161,6 +164,67 @@ public class CollegesArray  extends JFrame
 					{
 						JOptionPane.showMessageDialog(frame,"You have " + education.get(e).getFeeling() + " confidence about going to " + education.get(e).getName());
 					}
+			}
+		public static void makeProsCons()
+			{
+				boolean listing = true; 
+				while (listing)
+    				{
+    					Object[] options = new Object [education.size()];
+    					for (int i=0; i< education.size(); i++)
+    						{
+    							options[i]=education.get(i).getName();
+    							int schoolChoice = i; 
+    						}	
+    					int school = JOptionPane.showOptionDialog(frame, "Let's figure out the pros and cons! Chose a college.",
+    							"School",
+    							JOptionPane.YES_NO_CANCEL_OPTION,
+    							JOptionPane.QUESTION_MESSAGE,
+    							null, options, options[1]);
+    					Object[] options1 = {"yes", "no"};
+    					int list = JOptionPane.showOptionDialog(frame, "Would you like to list the pros and cons for this school?",
+    							"list",
+    							JOptionPane.YES_NO_CANCEL_OPTION,
+    							JOptionPane.QUESTION_MESSAGE,
+    							null, options1, options1[1]);
+    					switch(list)
+    						{
+    						case 0:
+    							{
+    								JOptionPane.showMessageDialog(frame,"Let's start!"); 
+    								prosList = JOptionPane.showInputDialog("What are the pros about this school?"); 
+    								education.get(school).setPro(prosList);
+    								consList = JOptionPane.showInputDialog("What are the cons about this school?"); 
+    								education.get(school).setCon(consList);
+    								break;
+    							}
+    						case 1: 
+    							{
+    								JOptionPane.showMessageDialog(frame,"Let's hope you know what you're doing!"); 
+									break;	
+    							}
+    						}
+    					Object[] options2 = {"yes", "no"};
+    					int moreList = JOptionPane.showOptionDialog(frame, "Do you want to make a list for another school?",
+    							"More List",
+    							JOptionPane.YES_NO_CANCEL_OPTION,
+    							JOptionPane.QUESTION_MESSAGE,
+    							null, options2, options2[1]);
+    					switch(moreList)
+							{
+							case 0:
+								{
+									JOptionPane.showMessageDialog(frame,"Good!"); 
+									break;
+								}
+							case 1: 
+								{
+									JOptionPane.showMessageDialog(frame,"Let's hope you know what you're doing!"); 
+									listing = false;
+									break;
+								}
+							}
+    				}
 			}
 		public static void sortTuition()
 			{
@@ -214,40 +278,100 @@ public class CollegesArray  extends JFrame
 						}
 				}
 			}
+		public static void educateChoice()
+			{	
+				Object[] options1 = {"yes", "no"};
+				int findList = JOptionPane.showOptionDialog(frame, "Would you like to see the pros and cons list for some schools before you make your decision?",
+						"find list",
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null, options1, options1 [1]);
+				switch(findList)
+					{
+					case 0:
+						{
+							boolean comparing = true; 
+							while (comparing)
+								{
+									Object[] options = new Object [education.size()];
+			    					for (int i=0; i< education.size(); i++)
+			    						{
+			    							options[i]=education.get(i).getName();
+			    						}	
+			    					int school2 = JOptionPane.showOptionDialog(frame, "Chose a college.",
+			    							"School",
+			    							JOptionPane.YES_NO_CANCEL_OPTION,
+			    							JOptionPane.QUESTION_MESSAGE,
+			    							null, options, options[1]);
+			    					JOptionPane.showMessageDialog(frame,"Pros: " + education.get(school2).getPro()); 
+			    					JOptionPane.showMessageDialog(frame,"Cons: " +  education.get(school2).getCon()); 
+			    					
+			    					
+			    					Object[] options2 = {"yes", "no"};
+			    					int moreLists = JOptionPane.showOptionDialog(frame, "Would you like to see more lists?",
+			    							"more lists",
+			    							JOptionPane.YES_NO_CANCEL_OPTION,
+			    							JOptionPane.QUESTION_MESSAGE,
+			    							null, options2, options2 [1]);
+			    					switch(moreLists)
+			    						{
+			    							case 0:
+			    								{
+			    									JOptionPane.showMessageDialog(frame,"Good!"); 
+			    									break;
+			    								}
+			    							case 1: 
+			    								{
+			    									JOptionPane.showMessageDialog(frame,"Let's hope you know what you're doing!"); 
+			    									comparing = false;
+			    									break;
+			    								}
+			    						}
+			    							
+								}
+	    					break;
+						}
+					case 1: 
+						{
+							JOptionPane.showMessageDialog(frame,"Okay!"); 
+							break;	
+						}
+					}
+			}
 		public static void makeAChoice()
 			{
 				Object[] options = new Object [education.size()];
-				for (int i=0; i< education.size(); i++)
+				for (int e=0; e< education.size(); e++)
 					{
-						options[i]=education.get(i).getName();
-					}
-					
-				decision = JOptionPane.showOptionDialog(frame, "What is your final college choice?",
-						"Descision",
+						options [e]=education.get(e).getName();
+					}	
+				
+				int decision = JOptionPane.showOptionDialog(frame, "What is your final college choice?",
+						"Decision",
 						JOptionPane.YES_NO_CANCEL_OPTION,
 						JOptionPane.QUESTION_MESSAGE,
 						null, options, options[1]);
 				JOptionPane.showMessageDialog(frame, education.get(decision).getName() + " is awesome! Enjoy paying $" + education.get(decision).getTuition() + " for " + education.get(decision).getBestKnownFor() + " in " + education.get(decision).getLocation() + " with " +  education.get(decision).getStudentBodySize() + " of your closest friends!" );
 			}
-	public static void randomChoice()
-		{
-			Object[] options1 = {"yes", "no"};
-			happy = JOptionPane.showOptionDialog(frame, "Are you happy with your college choice?",
+		public static void randomChoice()
+			{
+				Object[] options1 = {"yes", "no"};
+				int happy = JOptionPane.showOptionDialog(frame, "Are you happy with your college choice?",
 					"Happy",
 					JOptionPane.YES_NO_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null, options1, options1[1]);
-			switch(happy)
-			{
-				case 0:
+				switch(happy)
+				{
+					case 0:
 						{
 							JOptionPane.showMessageDialog(frame, "Good! Glad to help!");
 							break;
 						}
-				case 1:
+					case 1:
 						{
 							Object[] options2 = {"yes", "no"};
-							computer = JOptionPane.showOptionDialog(frame, "Aw! Would you like the computer to chose for you?",
+							int computer = JOptionPane.showOptionDialog(frame, "Aw! Would you like the computer to chose for you?",
 									"Computer",
 									JOptionPane.YES_NO_CANCEL_OPTION,
 									JOptionPane.QUESTION_MESSAGE,

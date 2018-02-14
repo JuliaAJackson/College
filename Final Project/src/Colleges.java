@@ -7,7 +7,9 @@ public class Colleges
 		int tuition;
 		int studentBodySize;
 		int feeling;
-		public Colleges (String n, String l, String a, String b, int t, int s, int f)
+		String pro;
+		String con;
+		public Colleges (String n, String l, String a, String b, int t, int s, int f, String p, String c)
 			{
 				name = n;
 				location = l;
@@ -16,6 +18,24 @@ public class Colleges
 				tuition = t;
 				studentBodySize = s;
 				feeling = f;
+				pro = p;
+				con = c;
+			}
+		public String getPro()
+			{
+				return pro;
+			}
+		public void setPro(String pro)
+			{
+				this.pro = pro;
+			}
+		public String getCon()
+			{
+				return con;
+			}
+		public void setCon(String con)
+			{
+				this.con = con;
 			}
 		public int getFeeling()
 			{
