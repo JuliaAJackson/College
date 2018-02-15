@@ -37,7 +37,6 @@ public class CollegesArray  extends JFrame
 				sortFeeling();
 				sortTuition();
 				educateChoice();
-				
 				makeAChoice();
 				randomChoice();
 			}
@@ -51,10 +50,8 @@ public class CollegesArray  extends JFrame
 			}
 		public static void addCollege()
 			{
-				for (int i=0; i< education.size(); i++)
-    					{
-    						JOptionPane.showMessageDialog(frame,education.get(i).getName());
-   						}
+    				JOptionPane.showMessageDialog(frame,education.get(0).getName() + ", " + education.get(1).getName() + ", " + education.get(2).getName() + ", " + education.get(3).getName() + ", " + education.get(4).getName());
+   						
    					Object[] options = {"yes", "no"};
     				int college = JOptionPane.showOptionDialog(frame, "Would you like to add a college to this list?",
     						"College",
@@ -160,10 +157,6 @@ public class CollegesArray  extends JFrame
 						recordedFeeling = Integer.parseInt(stringRecordedFeeling);
 						education.get(i).setFeeling(recordedFeeling);
 					}	
-				for (int e=0; e< education.size(); e++)
-					{
-						JOptionPane.showMessageDialog(frame,"You have " + education.get(e).getFeeling() + " confidence about going to " + education.get(e).getName());
-					}
 			}
 		public static void makeProsCons()
 			{
@@ -219,7 +212,7 @@ public class CollegesArray  extends JFrame
 								}
 							case 1: 
 								{
-									JOptionPane.showMessageDialog(frame,"Let's hope you know what you're doing!"); 
+									JOptionPane.showMessageDialog(frame,"Alright! Good luck!"); 
 									listing = false;
 									break;
 								}
@@ -380,6 +373,14 @@ public class CollegesArray  extends JFrame
 							{
 								case 0:
 										{
+											for (int i=0; i< education.size(); i++)
+						    					{
+						    						int finalFeeling =  education.get(i).getFeeling();
+						    						if (finalFeeling < 5)
+						    							{
+						    								education.remove(i);
+						    							} 
+						   						} 
 											int randomCollege = (int) (Math.random() * education.size());
 											JOptionPane.showMessageDialog(frame, education.get(randomCollege).getName() + " is in your future according to this computer! Enjoy paying $" + education.get(randomCollege).getTuition() + " for " + education.get(randomCollege).getBestKnownFor() + " in " + education.get(randomCollege).getLocation() + " with " +  education.get(randomCollege).getStudentBodySize() + " of your closest friends!" );
 											break;
