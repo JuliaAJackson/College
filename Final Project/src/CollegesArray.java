@@ -23,6 +23,7 @@ public class CollegesArray  extends JFrame
 		static String con;
 		static String prosList;
 		static String consList;
+		static int finalDecision;
 		static JFrame frame = new JFrame();
 		static ArrayList <Colleges> education = new ArrayList <Colleges>();
 		public static void main(String[] args)
@@ -50,7 +51,8 @@ public class CollegesArray  extends JFrame
 			}
 		public static void addCollege()
 			{
-    				JOptionPane.showMessageDialog(frame,education.get(0).getName() + ", " + education.get(1).getName() + ", " + education.get(2).getName() + ", " + education.get(3).getName() + ", " + education.get(4).getName());
+    				
+				JOptionPane.showMessageDialog(frame, "Hello! Here are some potential colleges you may want to attend: " + education.get(0).getName() + ", " + education.get(1).getName() + ", " + education.get(2).getName() + ", " + education.get(3).getName() + ", " + education.get(4).getName());
    						
    					Object[] options = {"yes", "no"};
     				int college = JOptionPane.showOptionDialog(frame, "Would you like to add a college to this list?",
@@ -339,12 +341,12 @@ public class CollegesArray  extends JFrame
 						options [e]=education.get(e).getName();
 					}	
 				
-				int decision = JOptionPane.showOptionDialog(frame, "What is your final college choice?",
+				 finalDecision = JOptionPane.showOptionDialog(frame, "What is your final college choice?",
 						"Decision",
 						JOptionPane.YES_NO_CANCEL_OPTION,
 						JOptionPane.QUESTION_MESSAGE,
 						null, options, options[1]);
-				JOptionPane.showMessageDialog(frame, education.get(decision).getName() + " is awesome! Enjoy paying $" + education.get(decision).getTuition() + " for " + education.get(decision).getBestKnownFor() + " in " + education.get(decision).getLocation() + " with " +  education.get(decision).getStudentBodySize() + " of your closest friends!" );
+				JOptionPane.showMessageDialog(frame, education.get(finalDecision).getName() + " is awesome! Enjoy paying $" + education.get(finalDecision).getTuition() + " for " + education.get(finalDecision).getBestKnownFor() + " in " + education.get(finalDecision).getLocation() + " with " +  education.get(finalDecision).getStudentBodySize() + " of your closest friends!" );
 			}
 		public static void randomChoice()
 			{
@@ -373,6 +375,7 @@ public class CollegesArray  extends JFrame
 							{
 								case 0:
 										{
+											education.remove(finalDecision);
 											for (int i=0; i< education.size(); i++)
 						    					{
 						    						int finalFeeling =  education.get(i).getFeeling();
