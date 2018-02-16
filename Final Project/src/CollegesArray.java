@@ -99,7 +99,7 @@ public class CollegesArray  extends JFrame
     						{
     							options[i]=education.get(i).getName();
     						}	
-    					int choice = JOptionPane.showOptionDialog(frame, "Let's figure out the financials! Chose a college.",
+    					int choice = JOptionPane.showOptionDialog(frame, "Let's figure out the financials! Choose a college.",
     							"Choice",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
@@ -171,7 +171,7 @@ public class CollegesArray  extends JFrame
     							options[i]=education.get(i).getName();
     							int schoolChoice = i; 
     						}	
-    					int school = JOptionPane.showOptionDialog(frame, "Let's figure out the pros and cons! Chose a college.",
+    					int school = JOptionPane.showOptionDialog(frame, "Let's figure out the pros and cons! Choose a college.",
     							"School",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
