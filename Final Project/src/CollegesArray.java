@@ -1,31 +1,14 @@
 import java.util.*;
-import java.util.Scanner;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class CollegesArray  extends JFrame
 	{
 		private static final long serialVersionUID = 1L;
-		static String name; 
-		static String stringDeduction;
-		static int deduction;
-		static String stringRecordedFeeling;
-		static int recordedFeeling;
-		static String location; 
-		static String decisionDate; 
-		static String bestKnownFor; 
-		static String stringTuition; 
-		static String stringStudentBodySize; 
-		static int tuition;
-		static int studentBodySize;
-		static int feeling; 
-		static String pro;
-		static String con;
-		static String prosList;
-		static String consList;
-		static int finalDecision;
-		static JFrame frame = new JFrame();
-		static ArrayList <Colleges> education = new ArrayList <Colleges>();
+		private static String name, stringDeduction, stringRecordedFeeling, location, decisionDate, bestKnownFor, stringTuition, stringStudentBodySize, pro, con, prosList, consList; 
+		private static int deduction, recordedFeeling, tuition, studentBodySize, feeling, finalDecision;
+		private static JFrame frame = new JFrame();
+		private static ArrayList <Colleges> education = new ArrayList <Colleges>();
 		public static void main(String[] args)
 			{
 				fillArray();
@@ -99,12 +82,12 @@ public class CollegesArray  extends JFrame
     						{
     							options[i]=education.get(i).getName();
     						}	
-    					int choice = JOptionPane.showOptionDialog(frame, "Let's figure out the financials! Chose a college.",
+    					int choice = JOptionPane.showOptionDialog(frame, "Let's figure out the financials! Choose a college.",
     							"Choice",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
     							null, options, options[1]);
-    					Object[] options1 = {"yes", "no"};
+    					Object[] options1 = {"yes", "no", "more yes"};
     					int financial = JOptionPane.showOptionDialog(frame, "Did you receive any money from this school?",
     							"Financial",
     							JOptionPane.YES_NO_CANCEL_OPTION,
@@ -152,7 +135,7 @@ public class CollegesArray  extends JFrame
 			}
 		public static void recordFeelings()
 			{
-				JOptionPane.showMessageDialog(frame, "How confident are you that you want to go to each school on a scale of 1-10 (1 being 'ew no') (10 being 'Why aren't I there already?')");
+				JOptionPane.showMessageDialog(frame, "How confident are you that you want to go to each school on a scale of 1-10 (1 being 'ew no', 10 being 'Why aren't I there already?') ?");
 				for (int i=0; i< education.size(); i++)
 					{
 						stringRecordedFeeling = JOptionPane.showInputDialog("How do you feel about " + education.get(i).getName() + "?");
@@ -171,7 +154,7 @@ public class CollegesArray  extends JFrame
     							options[i]=education.get(i).getName();
     							int schoolChoice = i; 
     						}	
-    					int school = JOptionPane.showOptionDialog(frame, "Let's figure out the pros and cons! Chose a college.",
+    					int school = JOptionPane.showOptionDialog(frame, "Let's figure out the pros and cons! Choose a college.",
     							"School",
     							JOptionPane.YES_NO_CANCEL_OPTION,
     							JOptionPane.QUESTION_MESSAGE,
@@ -390,7 +373,7 @@ public class CollegesArray  extends JFrame
 										}
 								case 1: 
 									{
-										JOptionPane.showMessageDialog(frame, "Well, you better go do some soul searching");
+										JOptionPane.showMessageDialog(frame, "Well, you better go do some soul searching.");
 										break;
 									}
 			
